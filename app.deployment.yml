@@ -71,14 +71,13 @@ metadata:
     app: frontend
 
 spec:
-  type: NodePort
+  type: LoadBalancer
 
   selector:
     app: frontend
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 31000
 ---
 apiVersion: apps/v1
 kind: Deployment
