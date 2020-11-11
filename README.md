@@ -1,0 +1,1 @@
+A very simple repository that showcases using docker-compose for dev and prod, multi-build stages, use of bind volumes for source code in dev env for using docker for development and deploying app to kubernetes cluster in pod replicas connecting them via a Loadbalancer and a nodeport services
