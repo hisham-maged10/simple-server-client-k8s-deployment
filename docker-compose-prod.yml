@@ -1,0 +1,20 @@
+version: "3.4"
+
+services:
+  server:
+    build:
+      context: ./nodejs_server
+      target: prod
+    image: k8s_server:latest
+    ports:
+      - 8080:80
+   
+  client:
+    build:
+      context: ./nodejs_client/
+      target: prod
+    image: k8s_client:latest
+    ports:
+      - 8081:80
+
+

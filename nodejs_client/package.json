@@ -1,0 +1,15 @@
+{
+  "name": "docker_program_try_2",
+  "version": "1.0.0",
+  "description": "communicator with node1 docker container",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hisham Maged",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
+}

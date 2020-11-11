@@ -1,0 +1,16 @@
+{
+  "name": "docker_program_try",
+  "version": "1.0.0",
+  "description": "Program to try out docker images and bridge networking",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodejs app.js"
+  },
+  "author": "Hisham Maged",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  }
+}

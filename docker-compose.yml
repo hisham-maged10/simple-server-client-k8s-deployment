@@ -1,0 +1,34 @@
+version: "3.4"
+
+services:
+  server:
+    build:
+      context: ./nodejs_server
+      target: dev
+    image: k8s_server:latest
+    volumes:
+      - type: bind
+        source: $HOME/apps/real_try/nodejs_server/
+        target: /src
+        read_only: true
+    networks:
+      - mynetwork
+    ports:
+      - 8080:80
+  client:
+    build:
+      context: ./nodejs_client
+      target: dev
+    image: k8s_client:latest
+    volumes:
+      - type: bind
+        source: $HOME/apps/real_try/nodejs_client/
+        target: /src
+        read_only: true
+    networks:
+      - mynetwork
+    ports:
+      - 8081:80
+networks:
+  mynetwork:
+
