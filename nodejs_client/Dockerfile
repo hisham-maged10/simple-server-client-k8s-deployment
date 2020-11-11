@@ -20,6 +20,6 @@ COPY --from=build /src .
 
 RUN apk add --update nodejs
 
-EXPOSE 80
+EXPOSE 8081
 
 ENTRYPOINT ["node", "app.js"]
