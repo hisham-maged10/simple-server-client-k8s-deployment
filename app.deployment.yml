@@ -1,4 +1,13 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-settings
+  labels:
+    app: backend
+data:
+  HISHAM: try worked
+---
+apiVersion: v1
 
 kind: Service
 
@@ -34,9 +43,19 @@ spec:
       labels:
         app: backend
     spec:
+      volumes:
+        - name: configmap-vol
+          configMap:
+            name: app-settings
       containers:
         - name: server
-          image: docker.io/hishammaged10/k8s_server
+          image: docker.io/hishammaged10/k8s_server:env
+          envFrom:
+            - configMapRef:
+                name: app-settings
+          volumeMounts:
+            - name: configmap-vol
+              mountPath: /etc/config/
           ports:
             - containerPort: 80
           livenessProbe:
@@ -56,6 +75,9 @@ spec:
             periodSeconds: 2
             failureThreshold: 10
           resources:
+            requests:
+              memory: 64Mi
+              cpu: 100m
             limits:
               memory: 128Mi
               cpu: 100m
@@ -97,7 +119,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: docker.io/hishammaged10/k8s_client
+          image: docker.io/hishammaged10/k8s_client:env
           ports:
             - containerPort: 80
           livenessProbe:
