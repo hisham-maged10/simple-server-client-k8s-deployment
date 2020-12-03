@@ -47,15 +47,26 @@ spec:
         - name: configmap-vol
           configMap:
             name: app-settings
+        - name: secrets-vol
+          secret:
+            secretName: app-secrets
       containers:
         - name: server
           image: docker.io/hishammaged10/k8s_server:env
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: password
           envFrom:
             - configMapRef:
                 name: app-settings
           volumeMounts:
             - name: configmap-vol
               mountPath: /etc/config/
+            - name: secrets-vol
+              mountPath: /etc/passwords
           ports:
             - containerPort: 80
           livenessProbe:
